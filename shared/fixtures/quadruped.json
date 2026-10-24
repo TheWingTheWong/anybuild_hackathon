@@ -1,0 +1,28 @@
+{
+  "name": "Pip",
+  "summary": "A palm-sized four-legged walker made of foam board and eight micro servos.",
+  "template": "quadruped",
+  "task": { "goal": "walk_forward", "notes": "Walk forward on a flat table." },
+  "body": { "lengthM": 0.14, "widthM": 0.08, "heightM": 0.03, "material": "foamboard" },
+  "limbs": [
+    { "id": "fl", "mount": { "x": 0.06, "y": 0.045, "z": 0 }, "segments": [
+      { "id": "fl_hip", "lengthM": 0.04, "axis": "yaw", "rangeDeg": [-45, 45], "servo": "mg90s" },
+      { "id": "fl_knee", "lengthM": 0.06, "axis": "pitch", "rangeDeg": [-70, 70], "servo": "mg90s" } ] },
+    { "id": "fr", "mount": { "x": 0.06, "y": -0.045, "z": 0 }, "segments": [
+      { "id": "fr_hip", "lengthM": 0.04, "axis": "yaw", "rangeDeg": [-45, 45], "servo": "mg90s" },
+      { "id": "fr_knee", "lengthM": 0.06, "axis": "pitch", "rangeDeg": [-70, 70], "servo": "mg90s" } ] },
+    { "id": "bl", "mount": { "x": -0.06, "y": 0.045, "z": 0 }, "segments": [
+      { "id": "bl_hip", "lengthM": 0.04, "axis": "yaw", "rangeDeg": [-45, 45], "servo": "mg90s" },
+      { "id": "bl_knee", "lengthM": 0.06, "axis": "pitch", "rangeDeg": [-70, 70], "servo": "mg90s" } ] },
+    { "id": "br", "mount": { "x": -0.06, "y": -0.045, "z": 0 }, "segments": [
+      { "id": "br_hip", "lengthM": 0.04, "axis": "yaw", "rangeDeg": [-45, 45], "servo": "mg90s" },
+      { "id": "br_knee", "lengthM": 0.06, "axis": "pitch", "rangeDeg": [-70, 70], "servo": "mg90s" } ] }
+  ],
+  "electronics": {
+    "controller": "esp32_devkitc",
+    "servoDriver": "pca9685",
+    "battery": "lipo_2s_1000",
+    "regulator": "ubec_5v_3a",
+    "sensors": ["mpu6050"]
+  }
+}

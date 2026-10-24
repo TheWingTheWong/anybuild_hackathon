@@ -1,0 +1,41 @@
+{
+  "_note": "Claude may only design with ids from this file. Specs feed the simulator (torque/speed limits) so sim matches real parts. estUsd is a fallback; live web search replaces it in the build step.",
+  "servos": [
+    { "id": "sg90", "name": "TowerPro SG90 micro servo (plastic gear)", "massKg": 0.009, "torqueNm": 0.176, "speedRadS": 10.5, "voltage": "4.8-6V", "estUsd": 2.5, "search": "SG90 micro servo" },
+    { "id": "mg90s", "name": "MG90S micro servo (metal gear)", "massKg": 0.0134, "torqueNm": 0.216, "speedRadS": 10.5, "voltage": "4.8-6V", "estUsd": 4, "search": "MG90S metal gear servo" },
+    { "id": "mg996r", "name": "MG996R standard servo (metal gear)", "massKg": 0.055, "torqueNm": 0.92, "speedRadS": 6.2, "voltage": "4.8-6.6V", "estUsd": 7, "search": "MG996R servo" },
+    { "id": "ds3218", "name": "DS3218 20kg digital servo", "massKg": 0.06, "torqueNm": 1.96, "speedRadS": 6.5, "voltage": "4.8-6.8V", "estUsd": 15, "search": "DS3218 20kg servo" }
+  ],
+  "controllers": [
+    { "id": "esp32_devkitc", "name": "ESP32 DevKitC (Wi-Fi + Bluetooth)", "massKg": 0.01, "maxDirectServos": 6, "estUsd": 8, "search": "ESP32 DevKitC V4" },
+    { "id": "arduino_nano", "name": "Arduino Nano (ATmega328P)", "massKg": 0.007, "maxDirectServos": 6, "estUsd": 6, "search": "Arduino Nano" }
+  ],
+  "servoDrivers": [
+    { "id": "pca9685", "name": "PCA9685 16-channel PWM servo driver (I2C)", "massKg": 0.01, "channels": 16, "estUsd": 6, "search": "PCA9685 16 channel servo driver" }
+  ],
+  "batteries": [
+    { "id": "lipo_2s_1000", "name": "2S 7.4V 1000mAh LiPo", "massKg": 0.06, "voltage": 7.4, "estUsd": 12, "search": "2S 7.4V 1000mAh LiPo" },
+    { "id": "pack_4xaa", "name": "4xAA holder (6V) + NiMH cells", "massKg": 0.11, "voltage": 4.8, "estUsd": 9, "search": "4xAA battery holder" },
+    { "id": "pack_2x18650", "name": "2x18650 holder + cells (7.4V)", "massKg": 0.1, "voltage": 7.4, "estUsd": 14, "search": "2x 18650 battery holder" }
+  ],
+  "regulators": [
+    { "id": "ubec_5v_3a", "name": "5V 3A UBEC (servo power)", "massKg": 0.01, "maxA": 3, "estUsd": 5, "search": "5V 3A UBEC" },
+    { "id": "xl4015_5a", "name": "XL4015 5A buck converter", "massKg": 0.02, "maxA": 5, "estUsd": 5, "search": "XL4015 5A buck converter" }
+  ],
+  "sensors": [
+    { "id": "mpu6050", "name": "MPU6050 IMU (balance)", "massKg": 0.003, "estUsd": 3, "search": "MPU6050 module" },
+    { "id": "hcsr04", "name": "HC-SR04 ultrasonic distance", "massKg": 0.009, "estUsd": 2, "search": "HC-SR04 ultrasonic sensor" },
+    { "id": "esp32_cam", "name": "ESP32-CAM camera module", "massKg": 0.01, "estUsd": 10, "search": "ESP32-CAM" }
+  ],
+  "materials": [
+    { "id": "foamboard", "name": "5mm foam board sheet", "densityKgM3": 30, "estUsd": 4, "search": "5mm foam board" },
+    { "id": "cardboard", "name": "Corrugated cardboard", "densityKgM3": 100, "estUsd": 0, "search": "" },
+    { "id": "3d_print", "name": "PLA print (printed parts)", "densityKgM3": 1240, "estUsd": 3, "search": "PLA filament" },
+    { "id": "acrylic", "name": "3mm acrylic sheet", "densityKgM3": 1180, "estUsd": 8, "search": "3mm acrylic sheet" }
+  ],
+  "hardware": [
+    { "id": "m2_kit", "name": "M2 screw + nut kit", "estUsd": 6, "search": "M2 screw nut assortment" },
+    { "id": "jumpers", "name": "Dupont jumper wires", "estUsd": 4, "search": "dupont jumper wires" },
+    { "id": "hot_glue", "name": "Hot glue gun + sticks", "estUsd": 8, "search": "mini hot glue gun" }
+  ]
+}

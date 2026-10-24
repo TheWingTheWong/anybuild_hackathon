@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Usage: scripts/worktree.sh <lane>     lanes: a1 a2 b1 b2 (see plan.md)
 #        scripts/worktree.sh rm <lane>  remove a lane's worktree after it is merged
-# Creates ../simforge-<lane> on branch lane/<lane>, with its own .env ports and node_modules.
+# Creates ../<repo>-<lane> on branch lane/<lane>, with its own .env ports and node_modules.
 set -euo pipefail
 root="$(git rev-parse --show-toplevel)"
 if [[ "${1:-}" == "rm" ]]; then
-  git -C "$root" worktree remove "$root/../simforge-$2" && git -C "$root" branch -d "lane/$2"
+  git -C "$root" worktree remove "$root/../$(basename "$root")-$2" && git -C "$root" branch -d "lane/$2"
   exit 0
 fi
 lane="${1:?lane required: a1 a2 b1 b2}"
@@ -16,7 +16,7 @@ case "$lane" in
   b2) web=5177 api=8791 ;;
   *) echo "unknown lane $lane"; exit 1 ;;
 esac
-dir="$root/../simforge-$lane"
+dir="$root/../$(basename "$root")-$lane"
 git -C "$root" fetch -q origin 2>/dev/null || true
 base="$(git -C "$root" rev-parse --verify -q origin/main >/dev/null && echo origin/main || echo main)"
 git -C "$root" worktree add -b "lane/$lane" "$dir" "$base"

@@ -2,7 +2,7 @@
 
 Read `plan.md` first. It's the source of truth: lanes, the contract, timeline and fallbacks.
 
-1. **Stay in your lane.** Your lane is in your worktree folder name (`simforge-a1` → lane A1). Only edit the files plan.md §4 assigns to it. If you need a change elsewhere, stop and tell your human.
+1. **Stay in your lane.** Your lane is in your worktree folder name (`anybuild_hackathon-a1` → lane A1). Only edit the files plan.md §4 assigns to it. If you need a change elsewhere, stop and tell your human.
 2. **The contract is frozen**: `shared/**`, `src/viewer/Viewer.tsx` props, `src/App.tsx`, `server/index.ts`, `package.json` and the lockfile. Don't edit them, and don't add dependencies. Ask your human.
 3. **Build against fixtures.** `shared/fixtures/quadruped.json` is a valid `RobotSpec`. Don't wait for another lane.
 4. **One numbered task at a time** from your lane's section of plan.md. When it works, run `pnpm typecheck`, commit with a plain message, and say what to click to see it.

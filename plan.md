@@ -1,4 +1,4 @@
-# SimForge: hackathon plan
+# AnyBuild: hackathon plan
 
 > **You say what you want. Claude designs it in 3D, the browser tests it 1,000 times, and when you approve, you get a parts list with live prices, a step-by-step build guide, and firmware ready to flash.**
 > It's NVIDIA's Berlin "three computers" demo, rebuilt so it runs in one browser tab, on any laptop, with no GPU, for free.
@@ -16,8 +16,8 @@ Judging: **50% technical execution · 30% creativity / wow · 20% real-world use
 
 | Person | Laptop folder | Worktrees (one agent each) |
 |---|---|---|
-| **A, "Brain"** (Claude + product) | `simforge/` (integration + demo) | `simforge-a1` Design · `simforge-a2` Build |
-| **B, "Body"** (3D + physics) | `simforge/` (integration + demo) | `simforge-b1` Compile + View · `simforge-b2` Train |
+| **A, "Brain"** (Claude + product) | `anybuild_hackathon/` (integration + demo) | `anybuild_hackathon-a1` Design · `anybuild_hackathon-a2` Build |
+| **B, "Body"** (3D + physics) | `anybuild_hackathon/` (integration + demo) | `anybuild_hackathon-b1` Compile + View · `anybuild_hackathon-b2` Train |
 
 Create one: `scripts/worktree.sh a1`. It makes the folder, creates the branch, sets separate ports in `.env` and installs dependencies. Remove it after merging: `scripts/worktree.sh rm a1`.
 
@@ -38,7 +38,7 @@ Create one: `scripts/worktree.sh a1`. It makes the folder, creates the branch, s
 
 ## 2. Stack: NVIDIA's version → ours
 
-| Step | NVIDIA in Berlin | SimForge | Owner |
+| Step | NVIDIA in Berlin | AnyBuild | Owner |
 |---|---|---|---|
 | Plan from plain language | Hermes + Nemotron | **Claude Opus 5.5** (`claude-opus-5-5`) with structured outputs → `RobotSpec` | A1 |
 | Build the 3D scene and rig the robot | "Astra" driving FreeCAD + Blender | Claude writes the spec, then **deterministic code** compiles it to MuJoCo's robot format (MJCF), so it can't produce broken geometry | B1 |

@@ -5,6 +5,12 @@
 
 Judging: **50% technical execution · 30% creativity / wow · 20% real-world use.** Every decision below is checked against those three.
 
+> **Design rule for now: black and white, function first.** Every feature in this plan gets built, but with no visual design yet. That means:
+> - Black text on a white background, the system font, plain HTML elements (buttons, inputs, tables, tabs as buttons). No CSS framework, no colors, gradients, icons or animations.
+> - The 3D view is grey shapes on white with a thin grid. Highlights are **black vs light grey**, and fitness shows as **darker = fitter** plus the number.
+> - Keep the layout simple, semantic markup with clear class names (`.stage-describe`, `.bom-table`, …), so the design pass later restyles everything without touching logic.
+> - Full design comes after the build works. Agents must not spend time on styling.
+
 ---
 
 ## 0. Answers to the questions you asked
@@ -130,9 +136,9 @@ The stubs are wired end to end already: `pnpm dev` runs Describe → Simulate �
    - Use timestep 0.005 and a floor plane with friction 1.
 2. `src/sim/mujoco.ts`: load the WASM once, single-threaded build: `import loadMujoco from '@mujoco/mujoco'`, then `mj.MjModel.from_xml_string(xml)`, `new mj.MjData(model)`, `mj.mj_step(model, data)`. The Vite config already excludes it from pre-bundling.
 3. `src/viewer/Viewer.tsx`: a **generic MJCF renderer**. For each geom, build a three.js mesh from `model.geom_type` / `geom_size`; every frame, set its position and rotation from `data.geom_xpos` / `geom_xmat` (live) or from a recorded `trajectory` (replay: set `qpos`, call `mj_forward`, read the poses).
-   - `highlight`: emissive color on the named geoms and dim the rest. `exploded`: push each limb out along its mount direction by 0.05 m.
-   - Make it look good: soft shadows, a ground grid, an orbit camera, an accent color for servos. This screen is the wow moment.
-4. Also export `<PopulationGrid trajectories={…} fitness={…}/>`: a 4×4 grid of small robots replaying, tinted red to green by fitness. B2 feeds it.
+   - `highlight`: draw the named geoms solid black and every other geom light grey. `exploded`: push each limb out along its mount direction by 0.05 m.
+   - Keep it plain for now (design comes later): grey shapes on white, a thin ground grid, an orbit camera, one light. No shadows, colors or post-effects.
+4. Also export `<PopulationGrid trajectories={…} fitness={…}/>`: a 4×4 grid of small robots replaying, each shaded from light grey to black by fitness (darker = fitter) with its fitness number underneath. B2 feeds it.
 - **Done when:** the fixture drops, settles and stands, and a hand-coded sine gait visibly moves it.
 - **Gotcha:** `data.qpos` is a live view into WASM memory. Copy it (`Float64Array.from`) before storing, and don't keep views across `mj_step` calls on a different model.
 
@@ -159,7 +165,7 @@ After training, B2 captures 4 frames from the canvas (`canvas.toDataURL`). A1 ad
 |---|---|---|---|---|
 | **0:00–0:20** | Push to GitHub; B clones; both run `pnpm install`, `cp .env.example .env` + key, and `pnpm dev` (stub flow works). Read `shared/spec.ts` together. Each runs `scripts/worktree.sh` ×2 and starts 2 agents. | | | |
 | **0:20–1:30** | | a1: streaming design + validator · a2: wiring + firmware + build endpoint on the fixture | b1: mjcf + MuJoCo loader + Viewer (fixture stands) · b2: worker + ES on the fixture, numbers in the console | **CP1 @1:30:** merge everything. A real Claude spec renders and stands. Training improves fitness on the fixture. |
-| **1:30–2:45** | | a1: Describe UI polish, 3 prompts pass · a2: live prices + steps + Build UI with highlights | b1: highlight/exploded + PopulationGrid + make it beautiful · b2: Simulate UI, chart, robustness, Approve | **CP2 @2:45:** full flow on the hero prompt end to end, **on main**. |
+| **1:30–2:45** | | a1: Describe UI (plain), 3 prompts pass · a2: live prices + steps + Build UI with highlights | b1: highlight/exploded + PopulationGrid (black and white) · b2: Simulate UI, chart, robustness, Approve | **CP2 @2:45:** full flow on the hero prompt end to end, **on main**. |
 | **2:45–3:30** | Decide go/no-go on stretch | Stretch: critique endpoint · prices cache warmed for the hero prompt | Stretch: frame capture + retrain v2 · performance pass | **CP3 @3:30: FEATURE FREEZE** |
 | **3:30–4:00** | Rehearse the 90 s demo 3×. Record a backup video of a perfect run. Write the 3-line pitch. Fix only crashes. | | | Submit |
 
@@ -224,7 +230,8 @@ Deploying to Vercel is a **stretch goal**. Demo from localhost; you control it.
 - [ ] A2.3 Build UI: parts / guide with 3D highlight / wiring / download
 - [ ] B1.1 spec → MJCF; fixture stands in MuJoCo
 - [ ] B1.2 Viewer: live + replay, highlight, exploded
-- [ ] B1.3 PopulationGrid + visual polish
+- [ ] B1.3 PopulationGrid (black and white)
+- [ ] Later, after the hackathon build works: full design pass (the plan's black and white rule ends here)
 - [ ] B2.1 Workers + ES: fitness rises on the fixture (rollouts/s measured: ___)
 - [ ] B2.2 Simulate UI: counter, chart, best replay, grid
 - [ ] B2.3 Stress test + Approve → TrainResult

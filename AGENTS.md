@@ -8,4 +8,5 @@ Read `plan.md` first. It's the source of truth: lanes, the contract, timeline an
 4. **One numbered task at a time** from your lane's section of plan.md. When it works, run `pnpm typecheck`, commit with a plain message, and say what to click to see it.
 5. **Claude API:** `@anthropic-ai/sdk` directly (no AI SDK), model `claude-opus-5-5`, structured outputs via `zodOutputFormat` from `@anthropic-ai/sdk/helpers/zod`, web search tool `web_search_20260209`. No `temperature`, no prefill, no forced `tool_choice`. The key only lives on the server (`.env`).
 6. **Don't rabbit-hole.** If something has failed for 10 minutes, use the fallback in plan.md §8 and tell your human.
-7. Use your worktree's ports from `.env` (`WEB_PORT`, `API_PORT`). Never kill other dev servers.
+7. **Black and white only, no styling work.** Plain HTML, system font, black on white, no colors/animations/CSS frameworks (plan.md top). Build every feature; design comes later.
+8. Use your worktree's ports from `.env` (`WEB_PORT`, `API_PORT`). Never kill other dev servers.
